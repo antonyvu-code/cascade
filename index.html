@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CASCADE — A Playable Incident</title>
+    <meta
+      name="description"
+      content="You are the on-call engineer. At 03:47 a single service fails. Restore the grid before the story ends."
+    />
+    <link rel="preconnect" href="https://rsms.me/" />
+  </head>
+  <body>
+    <a class="skip-link" href="#stage">Skip to the incident</a>
+
+    <!-- The whole site is one dead datacenter. -->
+    <canvas id="grid" aria-hidden="true"></canvas>
+
+    <main id="stage">
+      <!-- ACT 0 · CALM -->
+      <header class="hud" data-hud>
+        <span class="hud__tag" data-clock>00:00:00</span>
+        <span class="hud__title">CASCADE</span>
+        <span class="hud__meta" data-sev>ALL SYSTEMS NOMINAL</span>
+      </header>
+
+      <!-- Narrative overlay, act by act -->
+      <section class="act act--intro" data-act="intro" aria-live="polite">
+        <p class="act__kicker">CASE FILE · SEV1</p>
+        <h1 class="act__headline">
+          A quiet grid.<br /><span class="accent">Until 03:47.</span>
+        </h1>
+        <p class="act__lede">
+          You are on call. Everything is green — every node breathing in sync.
+          Move your signal across the grid. Then wait for the page to buzz.
+        </p>
+        <button class="cta" data-begin>Take the shift</button>
+        <p class="act__hint" data-hint>drag anywhere · or press <kbd>Tab</kbd></p>
+      </section>
+
+      <!-- Live post-mortem log, written as you play -->
+      <aside class="log" data-log aria-live="polite" aria-label="Incident log" hidden>
+        <p class="log__head">POST-MORTEM · reconstructing…</p>
+        <ol class="log__list" data-log-list></ol>
+      </aside>
+
+      <!-- Restore progress -->
+      <div class="meter" data-meter hidden>
+        <span class="meter__label">GRID RESTORED</span>
+        <span class="meter__track"><i data-meter-fill></i></span>
+        <span class="meter__value" data-meter-value>0%</span>
+      </div>
+
+      <!-- ACT 3 · ROOT CAUSE reveal -->
+      <section class="act act--root" data-act="root" hidden aria-live="polite">
+        <p class="act__kicker">ROOT CAUSE</p>
+        <h2 class="act__headline" data-root-headline></h2>
+        <p class="act__lede" data-root-lede></p>
+        <button class="cta cta--ghost" data-replay>Run it again</button>
+        <p class="signoff">
+          Built by a front-end engineer who reads the logs.
+          <a href="#stage" data-about>What this demonstrates →</a>
+        </p>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
